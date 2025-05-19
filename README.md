@@ -13,4 +13,7 @@
 - 레벨 시스템과 레벨업에 따른 랜덤 강화 시스템
 - 적 스폰 시스템
 
-## 
+## Author
+**박지훈**
+Unreal Engine 5 프로그래밍, 게임 플레이 프로그래밍을 하는 게임 개발자 지망생입니다.
+[GitHub](https://github.com/Fiamm3tta)
