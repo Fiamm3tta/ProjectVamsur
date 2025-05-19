@@ -52,7 +52,6 @@ void AProjectileSlash::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 {
     if (OtherActor && OtherActor != GetOwner())
     {
-        // 임의로 데미지를 줌
         UGameplayStatics::ApplyDamage(OtherActor, Damage, GetInstigatorController(), this, nullptr);
     }
 }

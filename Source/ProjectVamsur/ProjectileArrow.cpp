@@ -52,6 +52,6 @@ void AProjectileArrow::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
     if (OtherActor && OtherActor != GetOwner())
     {
         UGameplayStatics::ApplyDamage(OtherActor, Damage, GetInstigatorController(), this, nullptr);
-        Destroy(); // 단일 타격 후 제거
+        Destroy();
     }
 }

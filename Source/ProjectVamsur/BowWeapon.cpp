@@ -10,7 +10,7 @@
 
 ABowWeapon::ABowWeapon()
 {
-    AttackInterval = 0.8f; // 검보다 조금 빠르게 설정
+    AttackInterval = 0.8f;
     WeaponType = "Bow";
 }
 

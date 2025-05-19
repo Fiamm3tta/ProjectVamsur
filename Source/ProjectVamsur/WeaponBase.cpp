@@ -58,6 +58,5 @@ void AWeaponBase::TryAutoFire(float DeltaTime)
 
 void AWeaponBase::ApplyModifier(UWeaponModifier* Modifier)
 {
-    // 기본 구현: 아무것도 하지 않음
-    // 자식 클래스에서 오버라이드할 것
+
 }

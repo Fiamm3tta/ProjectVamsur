@@ -9,7 +9,7 @@
 
 AStaffWeapon::AStaffWeapon()
 {
-    AttackInterval = 6.0f; // 오라가 유지되는 시간과 발사 주기를 다르게
+    AttackInterval = 6.0f;
     WeaponType = "Staff";
 }
 

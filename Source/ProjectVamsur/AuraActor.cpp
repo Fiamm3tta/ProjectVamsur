@@ -36,7 +36,6 @@ void AAuraActor::Tick(float DeltaTime)
 
 void AAuraActor::ActivateAura(float Duration)
 {
-    // 시작 후 주기적 데미지 부여
     GetWorldTimerManager().SetTimer(TickTimer, this, &AAuraActor::DealDamage, TickInterval, true);
     GetWorldTimerManager().SetTimer(LifetimeTimer, this, &AAuraActor::EndAura, Duration, false);
 }
