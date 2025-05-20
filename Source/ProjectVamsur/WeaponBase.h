@@ -25,7 +25,7 @@ protected:
     // 공격 간격 (초)
     float AttackInterval;
 
-    // 소유 플레이어 (또는 AI)
+    // 소유 플레이어
     UPROPERTY()
     ACharacter* OwnerCharacter;
 

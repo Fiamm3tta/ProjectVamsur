@@ -18,14 +18,14 @@ ACubeCharacter::ACubeCharacter()
 	// 스프링암 생성
     CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
     CameraBoom->SetupAttachment(RootComponent);
-    CameraBoom->TargetArmLength = 800.0f;               // 거리 조절
-    CameraBoom->SetRelativeRotation(FRotator(-60.f, 0.f, 0.f)); // 위에서 약간 기울이기
-    CameraBoom->bUsePawnControlRotation = false;        // 회전하지 않음
+    CameraBoom->TargetArmLength = 800.0f; 
+    CameraBoom->SetRelativeRotation(FRotator(-60.f, 0.f, 0.f));
+    CameraBoom->bUsePawnControlRotation = false; 
 
     // 카메라 생성
     FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
     FollowCamera->SetupAttachment(CameraBoom);
-    FollowCamera->bUsePawnControlRotation = false;      // 카메라도 회전 안 따라감
+    FollowCamera->bUsePawnControlRotation = false; 
 	
 	GetCharacterMovement()->MaxWalkSpeed = 600.0f;
 	bUseControllerRotationYaw = false;
@@ -57,6 +57,8 @@ void ACubeCharacter::BeginPlay()
             EquippedWeapon->SetOwnerCharacter(this);
         }
     }
+
+    
 }
 
 // Called every frame
@@ -128,5 +130,23 @@ void ACubeCharacter::RotateTowardsCursor(float DeltaTime)
 
         FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, 10.0f);
         SetActorRotation(NewRotation);
+    }
+}
+
+void ACubeCharacter::AddExp(int32 Amount)
+{
+    CurrentExp += Amount;
+    UE_LOG(LogTemp, Display, TEXT("Get %d Exp"), Amount);
+    if (CurrentExp >= ExpToLevelUp)
+    {
+        LevelUp();
+    }
+}
+
+void ACubeCharacter::LevelUp()
+{
+    if(MaxLevel > CurrentLevel)
+    {
+        CurrentLevel += 1;
     }
 }

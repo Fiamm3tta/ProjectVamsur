@@ -10,7 +10,6 @@
 
 ASwordWeapon::ASwordWeapon()
 {
-    // 기본 발사 간격 설정
     AttackInterval = 1.0f;
     WeaponType = "Sword";
 }
