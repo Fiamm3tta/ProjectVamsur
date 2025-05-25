@@ -11,6 +11,7 @@ AEnemyCharacter::AEnemyCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+    GetCharacterMovement()->MaxWalkSpeed = MoveSpeed;
 }
 
 // Called when the game starts or when spawned
@@ -20,6 +21,7 @@ void AEnemyCharacter::BeginPlay()
 
 	CurrentHP = MaxHP;
 	TargetActor = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+    
 }
 
 // Called every frame
@@ -30,7 +32,7 @@ void AEnemyCharacter::Tick(float DeltaTime)
 	if (!TargetActor) return;
 
     FVector Direction = (TargetActor->GetActorLocation() - GetActorLocation()).GetSafeNormal();
-    AddMovementInput(Direction, MoveSpeed * DeltaTime);
+    AddMovementInput(Direction);
 
 }
 
