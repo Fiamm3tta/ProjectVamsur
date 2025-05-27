@@ -18,25 +18,32 @@ void ASwordWeapon::Fire()
 {
     if (!SlashProjectileClass || !OwnerCharacter) return;
 
-    FVector AimDir = Cast<ACubeCharacter>(OwnerCharacter)->GetAimDirection();
-    FVector MuzzleLocation = OwnerCharacter->GetActorLocation() + AimDir * 100.0f;
-    FRotator MuzzleRotation = AimDir.Rotation();
+    FVector Forward = Cast<ACubeCharacter>(OwnerCharacter)->GetAimDirection();
+    FVector MuzzleLocation = OwnerCharacter->GetActorLocation() + Forward * 10.0f;
+    FRotator MuzzleRotation = Forward.Rotation();
 
-    FActorSpawnParameters SpawnParams;
-    SpawnParams.Owner = this;
-    SpawnParams.Instigator = OwnerCharacter;
+    int32 Count = FMath::Max(1, NumSlashProjectiles);
+    float AngleStep = (Count > 1) ? TotalAngle / (Count - 1) : 0.0f;
 
-    AProjectileSlash* Projectile = GetWorld()->SpawnActor<AProjectileSlash>(
-        SlashProjectileClass,
-        MuzzleLocation,
-        MuzzleRotation,
-        SpawnParams
-    );
-
-    if (Projectile)
+    for(int32 i = 0; i < Count; i++)
     {
-        Projectile->InitVelocity(AimDir * SlashSpeed);
-    }
+        float AngleOffset = -TotalAngle / 2 + AngleStep * i;
 
-    UE_LOG(LogTemp, Log, TEXT("[%s] Sword Slash Fired!"), *GetName());
+        FRotator Rotated = Forward.Rotation();
+        Rotated.Yaw += AngleOffset;
+
+        FVector SlashDirection = Rotated.Vector();
+
+        AProjectileSlash* Projectile = GetWorld()->SpawnActor<AProjectileSlash>(
+            SlashProjectileClass,
+            MuzzleLocation,
+            MuzzleRotation
+        );
+
+        if (Projectile)
+        {
+            Projectile->InitVelocity(SlashDirection * SlashSpeed);
+        }
+
+    }
 }

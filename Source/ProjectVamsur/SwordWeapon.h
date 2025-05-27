@@ -18,14 +18,21 @@ public:
 
     virtual void Fire() override;
 
-protected:
-    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-    TSubclassOf<AProjectileSlash> SlashProjectileClass;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Slash")
+    int32 NumSlashProjectiles = 1; 
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Slash")
+    float TotalAngle = 0.0f;
 
     UPROPERTY(EditDefaultsOnly, Category = "Weapon")
     float SlashSpeed = 1000.0f;
 
     UPROPERTY(EditDefaultsOnly, Category = "Weapon")
     float SlashRange = 1000.0f;
+
+protected:
+
+    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+    TSubclassOf<AProjectileSlash> SlashProjectileClass;
 	
 };

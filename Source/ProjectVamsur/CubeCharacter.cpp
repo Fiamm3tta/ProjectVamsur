@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "SplitSlashModifier.h"
 
 // Sets default values
 ACubeCharacter::ACubeCharacter()
@@ -55,6 +56,9 @@ void ACubeCharacter::BeginPlay()
         if (EquippedWeapon)
         {
             EquippedWeapon->SetOwnerCharacter(this);
+
+            USplitSlashModifier* Modifier = NewObject<USplitSlashModifier>(this);
+            Modifier->ApplyToWeapon(EquippedWeapon);
         }
     }
 
